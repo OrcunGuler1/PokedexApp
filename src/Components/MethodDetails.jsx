@@ -1,16 +1,16 @@
 import { StyleSheet, Text, View } from 'react-native'
 import useGetOne from '../hooks/useGetOne'
-const TypeDetails = ({ navigation, route }) => {
-  const { typeDetails } = route.params
-  const { data, loading } = useGetOne(typeDetails)
+const MethodDetails = ({ avigation, route }) => {
+  const { methodDetails } = route.params
+  const { data, loading } = useGetOne(methodDetails)
   if (loading) return <Text>Loading...</Text>
   return (
     <View>
-      <Text>TypeDetails</Text>
+      <Text>MethodDetails</Text>
     </View>
   )
 }
 
-export default TypeDetails
+export default MethodDetails
 
 const styles = StyleSheet.create({})

@@ -1,5 +1,4 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
 import useGetOne from '../hooks/useGetOne'
 const SuperContestEffectDetails = () => {
   const { superContestEffectDetails } = route.params

@@ -1,17 +1,26 @@
+import { useCallback, useEffect } from 'react'
 import {
+  FlatList,
   Image,
   StyleSheet,
+  Text,
   TouchableOpacity,
   View,
-  Text,
-  FlatList,
 } from 'react-native'
-import React from 'react'
-import useGetOne from '../hooks/useGetOne'
 import formatString from '../helpers/formatString'
+import useGetOne from '../hooks/useGetOne'
 const PokemonDetails = ({ navigation, route }) => {
   const { url } = route.params
-  const { data } = useGetOne(url)
+  const { data, loading } = useGetOne(url)
+  const setTitle = useCallback(() => {
+    navigation.setOptions({
+      title: formatString(data.name) + ' Details',
+    })
+  }, [navigation, data.name])
+  useEffect(() => {
+    setTitle()
+  }, [setTitle])
+  if (loading) return <Text>Loading...</Text>
   return (
     <View>
       <Image

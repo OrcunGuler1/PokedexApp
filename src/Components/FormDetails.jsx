@@ -1,18 +1,28 @@
+import { useEffect } from 'react'
 import {
+  FlatList,
   Image,
   StyleSheet,
   Text,
-  View,
-  FlatList,
   TouchableOpacity,
+  View,
 } from 'react-native'
-import React from 'react'
-import useGetOne from '../hooks/useGetOne'
 import formatString from '../helpers/capitalize'
+import useGetOne from '../hooks/useGetOne'
 
 const FormDetails = ({ navigation, route }) => {
   const { formDetails } = route.params
   const { data, loading } = useGetOne(formDetails)
+  useEffect(() => {
+    if (loading) return
+    data.form_name
+      ? navigation.setOptions({
+          title: formatString(data.form_name) + ' Form details',
+        })
+      : navigation.setOptions({
+          title: formatString(data.name) + ' Form details',
+        })
+  }, [data])
   if (loading) return <Text>Loading...</Text>
   return (
     <View>
@@ -23,7 +33,7 @@ const FormDetails = ({ navigation, route }) => {
       <Text>
         Form name:{' '}
         {data.form_name
-          ? formatString(data.from_name)
+          ? formatString(data.form_name)
           : formatString(data.name)}
       </Text>
       <Text>Default form: {data?.is_default ? 'Yes' : 'No'}</Text>

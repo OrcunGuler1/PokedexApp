@@ -3,16 +3,14 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View,
+  View
 } from 'react-native'
-import React from 'react'
-import useGetOne from '../hooks/useGetOne'
 import formatString from '../helpers/formatString'
+import useGetOne from '../hooks/useGetOne'
 const MoveDetails = ({ navigation, route }) => {
   const { moveDetails } = route.params
   const { data, loading } = useGetOne(moveDetails)
   if (loading) return <Text>Loading...</Text>
-  console.log(moveDetails)
   return (
     <View>
       <Text>Move name: {formatString(data.name)}</Text>
@@ -38,7 +36,9 @@ const MoveDetails = ({ navigation, route }) => {
           })
         }
       >
-        <Text>Contest type: {formatString(data.contest_type.name)}</Text>
+        {data.contest_type ? (
+          <Text>Contest type: {formatString(data.contest_type.name)}</Text>
+        ) : null}
       </TouchableOpacity>
       <Text>Damage class: {formatString(data.damage_class.name)}</Text>
       <TouchableOpacity
@@ -117,7 +117,7 @@ const MoveDetails = ({ navigation, route }) => {
           )
         }}
       />
-      <Text>Targets {formatString(data.target.name)}</Text>
+      <Text>Targets: {formatString(data.target.name)}</Text>
       <TouchableOpacity
         onPress={() =>
           navigation.navigate('TargetingDetails', {

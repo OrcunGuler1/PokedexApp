@@ -1,15 +1,13 @@
+import { useState } from 'react'
 import {
-  Alert,
+  FlatList,
+  SafeAreaView,
   StyleSheet,
   Text,
   TouchableOpacity,
-  FlatList,
-  View,
-  SafeAreaView,
 } from 'react-native'
 import { Screen } from '../constants/constants'
 import formatString from '../helpers/capitalize.js'
-import { useState } from 'react'
 import useAxios from '../hooks/useAxios.js'
 const ListPokemon = ({ navigation }) => {
   const [url, setUrl] = useState('https://pokeapi.co/api/v2/pokemon')

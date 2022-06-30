@@ -5,13 +5,11 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
-import React from 'react'
-import useGetOne from '../hooks/useGetOne'
 import formatString from '../helpers/formatString'
+import useGetOne from '../hooks/useGetOne'
 const StatDetails = ({ navigation, route }) => {
   const { statDetails } = route.params
   const { data, loading } = useGetOne(statDetails)
-  console.log(statDetails)
   if (loading) return <Text>Loading...</Text>
   return (
     <View>

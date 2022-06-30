@@ -3,11 +3,10 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View,
+  View
 } from 'react-native'
-import React from 'react'
-import useGetOne from '../hooks/useGetOne'
 import formatString from '../helpers/formatString'
+import useGetOne from '../hooks/useGetOne'
 const NatureDetails = ({ navigation, route }) => {
   const { natureDetails } = route.params
   const { data, loading } = useGetOne(natureDetails)
@@ -64,15 +63,6 @@ const NatureDetails = ({ navigation, route }) => {
               </Text>
               <Text>High Health preference: {item.high_hp_preference}</Text>
               <Text>Low Health preference: {item.low_hp_preference}</Text>
-              <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate('MoveBattleStyleDetails', {
-                    moveBattleStyleDetails: item.move_battle_style.url,
-                  })
-                }
-              >
-                <Text>Go to details</Text>
-              </TouchableOpacity>
             </>
           )
         }}

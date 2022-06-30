@@ -5,8 +5,8 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
-import React from 'react'
 import { Screen } from '../constants/constants'
+import formatString from '../helpers/formatString'
 const PokemonAbilities = ({ route, navigation }) => {
   const { abilities } = route.params
   return (
@@ -20,7 +20,7 @@ const PokemonAbilities = ({ route, navigation }) => {
               navigation.navigate('AbilityDetails', { url: item.ability.url })
             }
           >
-            <Text>{item.ability.name}</Text>
+            <Text>{formatString(item.ability.name)}</Text>
           </TouchableOpacity>
         </View>
       )}

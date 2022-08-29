@@ -1,50 +1,41 @@
-import {
-  FlatList,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native'
-import { Screen } from '../constants/constants'
+import { FlatList, Text, TouchableOpacity, View } from 'react-native'
+import styles from '../styles/abilityStyles'
 import formatString from '../helpers/formatString'
 const PokemonAbilities = ({ route, navigation }) => {
-  const { abilities } = route.params
+  const { abilities, name } = route.params
   return (
     <FlatList
       data={abilities}
-      keyExtractor={(item) => item.ability.name}
+      ListHeaderComponent={() => {
+        return (
+          <Text style={{ fontSize: 28 }}>{formatString(name)} Abilites</Text>
+        )
+      }}
+      keyExtractor={item => item.ability.name}
       renderItem={({ item }) => (
-        <View style={styles.item}>
-          <TouchableOpacity
-            onPress={() =>
-              navigation.navigate('AbilityDetails', { url: item.ability.url })
-            }
-          >
-            <Text>{formatString(item.ability.name)}</Text>
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity
+          style={styles.item}
+          onPress={() =>
+            navigation.navigate('AbilityDetails', { url: item.ability.url })
+          }
+        >
+          <Text style={styles.abilityName}>
+            {formatString(item.ability.name)}
+          </Text>
+        </TouchableOpacity>
       )}
       contentContainerStyle={styles.listItem}
       style={styles.list}
+      ListFooterComponent={() => (
+        <View style={styles.footer}>
+          <Text style={{ fontWeight: 'bold', fontSize: 18 }}>
+            This section contains links to the pokemons abilities. You can go to
+            the ability details by touching on the desired skills name
+          </Text>
+        </View>
+      )}
     />
   )
 }
 
 export default PokemonAbilities
-
-const styles = StyleSheet.create({
-  item: {
-    backgroundColor: '#f9c2ff',
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
-  },
-  list: {
-    width: Screen.width,
-  },
-  listItem: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'column',
-  },
-})

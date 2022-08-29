@@ -7,19 +7,29 @@ const AbilityDetails = ({ navigation, route }) => {
   const { url } = route.params
   const { data, loading } = useGetOne(url)
   const [abilityDetail, setAbilityDetail] = useState(
-    data && !loading
-      ? [...data?.effect_entries?.filter((item) => item.language.name === 'en')]
-      : [],
+    data &&
+      !loading && [
+        ...data?.effect_entries?.filter(item => item.language.name === 'en'),
+      ],
   )
   useEffect(() => {
     navigation.setOptions({ title: formatString(data.name) + ' Details' })
   }, [data])
+
   if (loading) {
     return <Text>Loading...</Text>
   }
   return (
-    <View>
-      <Text>{abilityDetail.short_effect}</Text>
+    <View style={styles.container}>
+      <Text
+        style={
+          abilityDetail.short_effect
+            ? { fontSize: 14, fontWeight: 500 }
+            : { display: 'none' }
+        }
+      >
+        {abilityDetail.short_effect}
+      </Text>
       <TouchableOpacity
         onPress={() =>
           navigation.navigate('GenerationDetails', {
@@ -27,12 +37,14 @@ const AbilityDetails = ({ navigation, route }) => {
           })
         }
       >
-        <Text>{formatGeneration(data.generation.name)}</Text>
+        <Text style={styles.text}>
+          {formatGeneration(data.generation.name)}
+        </Text>
       </TouchableOpacity>
       <Text>Ability Name: {formatString(data.name)}</Text>
       <Text>From the main series: {data.is_main_series ? 'Yes' : 'No'}</Text>
       <Text>Other Pokemon that uses this ability:</Text>
-      {data.pokemon.map((item) => (
+      {data.pokemon.map(item => (
         <TouchableOpacity
           key={item.pokemon.name}
           onPress={() =>
@@ -48,4 +60,13 @@ const AbilityDetails = ({ navigation, route }) => {
 
 export default AbilityDetails
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  text: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  container: {
+    flex: 1,
+    alignItems: 'center',
+  },
+})

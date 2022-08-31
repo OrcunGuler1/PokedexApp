@@ -16,15 +16,15 @@ const ListPokemon = ({ navigation }) => {
     <SafeAreaView>
       <FlatList
         data={list}
-        keyExtractor={(item) => item.url}
+        keyExtractor={item => item.url}
         renderItem={({ item }) => (
           <TouchableOpacity
-            style={styles.button}
+            className="flex flex-col w-100 p-4 items-center justify-center border-2 border-sky-500 rounded my-2"
             onPress={() =>
               navigation.navigate('PokemonDetails', { url: item.url })
             }
           >
-            <Text style={styles.text}>{formatString(item.name)}</Text>
+            <Text className="text-black ">{formatString(item.name)}</Text>
           </TouchableOpacity>
         )}
         contentContainerStyle={styles.listItem}

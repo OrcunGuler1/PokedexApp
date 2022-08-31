@@ -16,7 +16,9 @@ const PokemonDetails = ({ navigation, route }) => {
   useEffect(() => {
     setTitle()
   }, [setTitle])
+
   if (loading) return <Text>Loading...</Text>
+
   return (
     <View style={styles.container}>
       <Image

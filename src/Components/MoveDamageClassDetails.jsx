@@ -10,7 +10,6 @@ const MoveDamageClassDetails = ({ navigation, route }) => {
   const { moveDamageClassDetails } = route.params
   const { data, loading } = useGetOne(moveDamageClassDetails)
   if (loading) return <Text>Loading...</Text>
-  console.log(moveDamageClassDetails)
 
   return (
     <View>

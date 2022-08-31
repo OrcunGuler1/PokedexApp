@@ -11,7 +11,6 @@ const NatureDetails = ({ navigation, route }) => {
   const { natureDetails } = route.params
   const { data, loading } = useGetOne(natureDetails)
   if (loading) return <Text>Loading...</Text>
-  console.log(natureDetails)
   return (
     <View>
       <Text>Name: {formatString(data.name)} </Text>

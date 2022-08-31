@@ -15,7 +15,6 @@ const AreaDetails = ({ navigation, route }) => {
     navigation.setOptions({ title: formatString(data.name) + ' Details' })
   }, [data])
   if (loading) return <Text>Loading...</Text>
-  console.log(areaDetails)
 
   return (
     <View>

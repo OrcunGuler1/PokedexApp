@@ -18,7 +18,6 @@ const LocationDetails = ({ navigation, route }) => {
     })
   }, [data])
   if (loading) return <Text>Loading...</Text>
-  console.log(locationDetails)
   return (
     <View>
       <Text>Location name: {formatString(data.name)}</Text>

@@ -11,7 +11,6 @@ const FlavorDetails = ({ navigation, route }) => {
   const { flavorDetails } = route.params
   const { data, loading } = useGetOne(flavorDetails)
   if (loading) return <Text>Loading...</Text>
-  console.log(flavorDetails)
   return (
     <View>
       <Text>Flavor name: {formatString(data.name)}</Text>

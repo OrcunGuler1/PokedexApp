@@ -11,7 +11,6 @@ const PokeathlonStatDetails = ({ navigation, route }) => {
   const { pokeathlonStatDetails } = route.params
   const { data, loading } = useGetOne(pokeathlonStatDetails)
   if (loading) return <Text>Loading...</Text>
-  console.log(pokeathlonStatDetails)
   const {
     affecting_natures: { increase, decrease },
   } = data
@@ -21,7 +20,7 @@ const PokeathlonStatDetails = ({ navigation, route }) => {
       <Text>Stat increases natures:</Text>
       <FlatList
         data={increase}
-        keyExtractor={(item) => item.nature.name}
+        keyExtractor={item => item.nature.name}
         renderItem={({ item }) => {
           return (
             <>
@@ -42,7 +41,7 @@ const PokeathlonStatDetails = ({ navigation, route }) => {
       <Text>Stat decreases natures:</Text>
       <FlatList
         data={decrease}
-        keyExtractor={(item) => item.nature.name}
+        keyExtractor={item => item.nature.name}
         renderItem={({ item }) => {
           return (
             <>

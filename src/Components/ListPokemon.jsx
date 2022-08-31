@@ -4,6 +4,7 @@ import {
   SafeAreaView,
   StyleSheet,
   Text,
+  TextInput,
   TouchableOpacity,
 } from 'react-native'
 import { Screen } from '../constants/constants'
@@ -17,6 +18,14 @@ const ListPokemon = ({ navigation }) => {
       <FlatList
         data={list}
         keyExtractor={item => item.url}
+        ListHeaderComponent={() => {
+          return (
+            <>
+              <TextInput />
+              <Text style={styles.header}>List of Pokemon</Text>
+            </>
+          )
+        }}
         renderItem={({ item }) => (
           <TouchableOpacity
             className="flex flex-col w-100 p-4 items-center justify-center border-2 border-sky-500 rounded my-2"
